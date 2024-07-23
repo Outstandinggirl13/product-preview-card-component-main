@@ -31,7 +31,7 @@ section {
     flex-direction: row;
     width: 600px;
     height: 450px;
-    margin: 0 auto;
+    margin: calc(((100vh - 33px) - 450px) * 0.5) auto;
     font-size: 14px;
     font-weight: 500;
     border-radius: 10px;
@@ -42,14 +42,6 @@ section {
     width: 300px;
     height: 450px;
     object-fit: cover;
-}
-
-.product-description{
-    
-}
-
-.product-image {
-    
 }
 
 .product-description > h3 {
@@ -69,13 +61,13 @@ section {
 }
 
 .product-description > p {
-    margin: 20px 32px;
+    margin: 24px 32px;
     line-height: 165%;
 }
 
 .product-description__prices {
     list-style-type: none;
-    margin: 20px 32px;
+    margin: 20px 32px 22px 32px;
 }
 
 .product-description__prices > li{
@@ -86,6 +78,7 @@ section {
 .product-description__prices li + li {
     text-decoration: line-through;
     padding-left: 20px;
+    letter-spacing: -0.05em;
 }
 
 .product-description__price-highlighted{
@@ -100,11 +93,13 @@ button {
     color: var(--white);
     border: none;
     border-radius: 10px;
-    padding: 20px 0;
+    padding: 17px 0;
     margin: 0 32px;
     font: inherit;
     font-weight: 700;
     width: calc(100% - 64px);
+    margin-bottom: 32px;
+
 }
 
 button:hover,
@@ -113,9 +108,15 @@ button:active {
     cursor: pointer;
 }
 
+button > img {
+    vertical-align: middle;
+    padding-right: 10px;
+}
+
 .attribution { 
     font-size: 11px; 
-    text-align: center; 
+    text-align: center;
+    padding: 10px;
 }
 
 .attribution a { 
