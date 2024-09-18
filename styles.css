@@ -45,6 +45,10 @@ section {
     object-fit: cover;
 }
 
+.mobile-perfume {
+    display: none;
+}
+
 .product-description {
     width: 50%;
     padding: 2rem;
@@ -53,7 +57,7 @@ section {
 .product-description > h3 {
     font-size: 0.75rem;
     font-weight: 500;
-    letter-spacing: 0.3em;
+    letter-spacing: 0.4em;
     text-transform: uppercase;
 }
 
@@ -126,4 +130,59 @@ button > img {
 
 .attribution a { 
     color: hsl(228, 45%, 44%); 
+}
+
+@media (max-width: 40.5rem) {
+
+    section {
+        flex-direction: column;
+        width: 21.5rem;
+        height: fit-content;
+        margin: calc((100vh - 38.375rem) * 0.5) auto;
+    }
+
+    .desktop-perfume{
+        display: none;
+    }
+
+    .mobile-perfume {
+        display: block;
+        height: 100%;
+        width: 100%;
+    }
+
+    .product-description {
+        width: 100%;
+        padding: 1.5rem;
+    }
+
+    .product-description > h3 {
+        letter-spacing: 0.42em;
+    }
+
+    .product-description > h2 {
+        margin: 0.75rem 0;
+    }
+
+    .product-description > p {
+        margin: 1.125rem 0;
+    }
+
+    .product-description__prices {
+        margin: 1.125rem 0;
+    }
+
+    .product-description__prices li + li {
+        letter-spacing: -0.04em;
+    }
+
+}
+
+@media (max-width: 23.5rem) {
+
+    section {
+        margin: 1.75rem 1rem;
+        width: fit-content;
+    }
+
 }
