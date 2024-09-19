@@ -31,7 +31,6 @@ section {
     flex-direction: row;
     width: 37.5rem;
     height: 28.125rem;
-/*     margin: calc(((100vh - 33px) - 450px) * 0.5) auto; */
     margin: calc((100vh - 28.125rem) * 0.5) auto;
     font-size: 0.875rem;
     font-weight: 500;
@@ -126,11 +125,14 @@ button > img {
     position: fixed;
     bottom: 0;
     width: 100%;
+    min-width: 21.5rem;
 }
 
 .attribution a { 
     color: hsl(228, 45%, 44%); 
 }
+
+/*screens with a width under 648px*/
 
 @media (max-width: 40.5rem) {
 
@@ -178,11 +180,29 @@ button > img {
 
 }
 
-@media (max-width: 23.5rem) {
+/*screens with a height of less than 720px AND with a width under 648px*/
+
+@media (max-height: 45rem) and (max-width: 40.5rem) {
 
     section {
-        margin: 1.75rem 1rem;
-        width: fit-content;
+        margin: 2rem auto;
     }
 
+    .attribution { 
+        position: static;
+    }
+
+}
+
+/*screens with a height under 544px*/
+
+@media (max-height: 34rem) {
+
+    section {
+        margin: 2rem auto;
+    }
+
+    .attribution { 
+        position: static;
+    }
 }
