@@ -88,7 +88,7 @@ to make the div element with ```.product-description``` class precisely equal to
 
 I've learned that one of the ways to be confident that the page looks like it is supposed to in all browsers with different user settings and sizes of screens is to use more responsive units like rem or % instead of px. Therefore, where appropriate, I replaced units with ```rem``` (mainly for font sizes, margins, and paddings) and ```%``` (for width and height).
 
-5. **Fixing a messed up footer on mobile devices.**
+5. **Fixing a messed up footer on mobile devices**
 
 5.1 To ensure that a div element with class ```.attribution``` won't have a width smaller than the section element in mobile design, I assigned the following property to it: 
 ```css
@@ -112,9 +112,9 @@ In this case, two media queries are applied. The first targets screens with a wi
         position: static;
     }
 ```
-This prevents the footer from overlapping the ```<section>``` element and ensures it remains part of the document flow. With these adjustments, the webpage on the iPhone SE looks much better, although now you need to scroll down to see the attribution.
+This prevents the footer from overlapping the ```<section>``` element and ensures it remains a part of the document flow. With these adjustments, the webpage on the iPhone SE looks much better, although now you need to scroll down to see the attribution.
 
-Initial screen displayed when the user enters the webpage on the iPhone SE:
+Now, when a user enters the webpage on the iPhone SE, the screen is displayed as follows:
 
 <img src="./screenshots/fixed-iPhone-SE-cropped.png" alt="Initial screen on the iPhone SE without the footer issue" width="375">
 
@@ -139,7 +139,7 @@ To resolve the issue, I added an additional media query:
     }
 }
 ```
-Initial screen displayed when the user enters the webpage on the Samsung Galaxy A51/71:
+Now, when a user enters the webpage on the Samsung Galaxy A51/71, the screen is displayed as follows:
 
 <img src="./screenshots/fixed-Samsung-Galaxy-A51_71-cropped.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
 
