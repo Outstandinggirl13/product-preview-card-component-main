@@ -45,7 +45,7 @@ Users should be able to:
 
 Here’s a list of challenges I’ve come across so far while working on this project, along with how I tackled them:
 
-1. **Dealing with how to position section element**
+1. **Dealing with how to position ```<section>``` element**
 
 I used a pretty straightforward way to position the section in the middle of the screen:
 ```css
@@ -67,7 +67,7 @@ To deal with the issue, the following approach was taken:
 ```
 ```position: fixed;``` takes the element out of document flow and ```bottom: 0;``` ensures that it will stick to the bottom. 
 
-3. **Splitting the section into two rows that contain the product image and product description**
+3. **Splitting the ```<section>``` into two parts that contain the product image and product description**
 
 For that, I used the Flexbox, although, I am still learning about the technology and I don't know all the nuances, this approach seems reasonable to me and the most convenient in this case.
 ```css
