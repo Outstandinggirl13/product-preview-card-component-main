@@ -42,6 +42,7 @@ section {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    filter: brightness(0.95);
 }
 
 .mobile-perfume {
@@ -85,7 +86,7 @@ section {
 
 .product-description__prices li + li {
     text-decoration: line-through;
-    padding-left: 1.25rem;
+    padding-left: 1rem;
     letter-spacing: -0.05em;
 }
 
@@ -115,7 +116,7 @@ button:active {
 
 button > img {
     vertical-align: middle;
-    padding-right: 0.625rem;
+    padding-right: 0.5rem;
 }
 
 .attribution { 
@@ -205,5 +206,5 @@ button > img {
     .attribution { 
         position: static;
     }
-    
+
 }
