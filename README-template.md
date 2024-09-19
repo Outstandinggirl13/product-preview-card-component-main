@@ -11,12 +11,9 @@ This is a solution to the [Product preview card component challenge on Frontend 
 - [My process](#my-process)
   - [Built with](#built-with)
   - [What I learned](#what-i-learned)
-  - [Continued development](#continued-development)
   - [Useful resources](#useful-resources)
 - [Author](#author)
-- [Acknowledgments](#acknowledgments)
 
-**Note: Delete this note and update the table of contents based on what sections you keep.**
 
 ## Overview
 
@@ -29,20 +26,12 @@ Users should be able to:
 
 ### Screenshot
 
-![](./screenshot.jpg)
-
-Add a screenshot of your solution. The easiest way to do this is to use Firefox to view your project, right-click the page and select "Take a Screenshot". You can choose either a full-height screenshot or a cropped one based on how long the page is. If it's very long, it might be best to crop it.
-
-Alternatively, you can use a tool like [FireShot](https://getfireshot.com/) to take the screenshot. FireShot has a free option, so you don't need to purchase it. 
-
-Then crop/optimize/edit your image however you like, add it to your project, and update the file path in the image above.
-
-**Note: Delete this note and the paragraphs above when you add your screenshot. If you prefer not to add a screenshot, feel free to remove this entire section.**
+![](./screenshots/webpage-screenshot.png)
 
 ### Links
 
 - Solution URL: [Add solution URL here](https://your-solution-url.com)
-- Live Site URL: [Add live site URL here](https://your-live-site-url.com)
+- Live Site URL: [GitHub Pages](https://outstandinggirl13.github.io/product-preview-card-component-main/)
 
 ## My process
 
@@ -51,61 +40,121 @@ Then crop/optimize/edit your image however you like, add it to your project, and
 - Semantic HTML5 markup
 - CSS custom properties
 - Flexbox
-- CSS Grid
-- Mobile-first workflow
-- [React](https://reactjs.org/) - JS library
-- [Next.js](https://nextjs.org/) - React framework
-- [Styled Components](https://styled-components.com/) - For styles
-
-**Note: These are just examples. Delete this note and replace the list above with your own choices**
 
 ### What I learned
 
-Use this section to recap over some of your major learnings while working through this project. Writing these out and providing code samples of areas you want to highlight is a great way to reinforce your own knowledge.
+Here’s a list of challenges I’ve come across so far while working on this project, along with how I tackled them:
 
-To see how you can add code snippets, see below:
+1. **Dealing with how to position section element**
 
-```html
-<h1>Some HTML code I'm proud of</h1>
-```
+I used a pretty straightforward way to position the section in the middle of the screen:
 ```css
-.proud-of-this-css {
-  color: papayawhip;
+section {
+    margin: calc((100vh - 28.125rem) * 0.5) auto;
 }
 ```
-```js
-const proudOfThisFunc = () => {
-  console.log('🎉')
+What keeps the element centered along the y-axis are equal top and bottom margins that are calculated as ```(100vh - 28.125rem) * 0.5```, where ```28.125rem``` is the height of the section element. Also, in order to keep the element centered horizontally I used a well-known and popular value ```auto``` with ```margin``` property. As a result, the margins adjust based on the browser window size, ensuring the section element remains centered regardless of the window's dimensions. I believe this makes the webpage more responsive on larger screens, but at the same time, it causes some issues on mobile devices (see paragraph 5.2).
+
+2. **Looking for a way to make a div element with the class .attribution, which plays the role of a footer, stick to the bottom of the page and remain visible**
+
+Since the ```<section>``` element, including its margins, takes up all the available vertical space in the viewport, I needed to find a way to display the footer on top of the section. If the footer remains part of the document flow, you'll need to scroll down to see it. Because this page is rather minimalistic, I would like it to be equal to the screen size, without any scrolling needed.
+To deal with the issue, the following approach was taken:
+```css
+.attribution { 
+    position: fixed;
+    bottom: 0;
 }
 ```
+```position: fixed;``` takes the element out of document flow and ```bottom: 0;``` ensures that it will stick to the bottom. 
 
-If you want more help with writing markdown, we'd recommend checking out [The Markdown Guide](https://www.markdownguide.org/) to learn more.
+3. **Splitting the section into two rows that contain the product image and product description**
 
-**Note: Delete this note and the content within this section and replace with your own learnings.**
+For that, I used the Flexbox, although, I am still learning about the technology and I don't know all the nuances, this approach seems reasonable to me and the most convenient in this case.
+```css
+section {
+    display: flex;
+    flex-direction: row;
+}
+```
+And then I set
+```css
+.product-description {
+    width: 50%;
+}
+```
+to make the div element with ```.product-description``` class precisely equal to half of the section element.
 
-### Continued development
+4. **Switching to more responsive units**
 
-Use this section to outline areas that you want to continue focusing on in future projects. These could be concepts you're still not completely comfortable with or techniques you found useful that you want to refine and perfect.
+I've learned that one of the ways to be confident that the page looks like it is supposed to in all browsers with different user settings and sizes of screens is to use more responsive units like rem or % instead of px. Therefore, where appropriate, I replaced units with ```rem``` (mainly for font sizes, margins, and paddings) and ```%``` (for width and height).
 
-**Note: Delete this note and the content within this section and replace with your own plans for continued development.**
+5. **Fixing a messed up footer on mobile devices.**
+
+5.1 To ensure that a div element with class ```.attribution``` won't have a width smaller than the section element in mobile design, I assigned the following property to it: 
+```css
+.attribution { 
+    min-width: 21.5rem;
+}
+```
+This helped prevent any unexpected behavior on smaller devices.
+
+5.2 My solution for centering the ```<section>``` element was designed with large screens in mind. However, when the screen height is too small, the webpage looks awkward, and the calculated margin becomes negative. For example, on the iPhone SE, the footer overlaps the ```<section>``` element.
+
+<img src="./screenshots/initial-iPhone-SE.png" alt="Initial screen on the iPhone SE with the footer issue" width="375">
+
+In this case, two media queries are applied. The first targets screens with a width of less than 648px and contains CSS code for mobile devices. The second applies to screens with a height of less than 720px and a width under 648px. This second media query addresses the footer issue by setting fixed top and bottom margin values and changing the footer's position to static:
+```css
+    section {
+        margin: 2rem auto;
+    }
+
+    .attribution { 
+        position: static;
+    }
+```
+This prevents the footer from overlapping the ```<section>``` element and ensures it remains part of the document flow. With these adjustments, the webpage on the iPhone SE looks much better, although now you need to scroll down to see the attribution.
+
+Initial screen displayed when the user enters the webpage on the iPhone SE:
+
+<img src="./screenshots/fixed-iPhone-SE-cropped.png" alt="Initial screen on the iPhone SE without the footer issue" width="375">
+
+Full-size screenshot on the iPhone SE:
+
+<img src="./screenshots/fixed-iPhone-SE-fullSize.png" alt="Full-size screenshot on the iPhone SE without the footer issue" width="375">
+
+5.3 The same issue occurs on screens with smaller heights. For example, on the Samsung Galaxy A51/71 in landscape mode, the CSS rule margin: calc((100vh - 28.125rem) * 0.5) auto; produces the following result:
+
+<img src="./screenshots/initial-Samsung-Galaxy-A51_71.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
+
+To resolve the issue, I added an additional media query:
+```css
+@media (max-height: 34rem) {
+
+    section {
+        margin: 2rem auto;
+    }
+
+    .attribution { 
+        position: static;
+    }
+}
+```
+Initial screen displayed when the user enters the webpage on the Samsung Galaxy A51/71:
+
+<img src="./screenshots/fixed-Samsung-Galaxy-A51_71-cropped.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
+
+Full-size screenshot on the Samsung Galaxy A51/71:
+
+<img src="./screenshots/fixed-Samsung-Galaxy-A51_71-fullSize.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
 
 ### Useful resources
 
-- [Example resource 1](https://www.example.com) - This helped me for XYZ reason. I really liked this pattern and will use it going forward.
-- [Example resource 2](https://www.example.com) - This is an amazing article which helped me finally understand XYZ. I'd recommend it to anyone still learning this concept.
+- [Positioning - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning) - This helped me to understand ```position:fixed```.
+- [Font-size - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size) - Thanks to this article, I gained a clearer understanding of the differences between units.
+- [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries) and [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) - For a better understanding of how to use media queries in responsive design.
 
-**Note: Delete this note and replace the list above with resources that helped you during the challenge. These could come in handy for anyone viewing your solution or for yourself when you look back on this project in the future.**
 
 ## Author
 
-- Website - [Add your name here](https://www.your-site.com)
-- Frontend Mentor - [@yourusername](https://www.frontendmentor.io/profile/yourusername)
-- Twitter - [@yourusername](https://www.twitter.com/yourusername)
-
-**Note: Delete this note and add/remove/edit lines above based on what links you'd like to share.**
-
-## Acknowledgments
-
-This is where you can give a hat tip to anyone who helped you out on this project. Perhaps you worked in a team or got some inspiration from someone else's solution. This is the perfect place to give them some credit.
-
-**Note: Delete this note and edit this section's content as necessary. If you completed this challenge by yourself, feel free to delete this section entirely.**
+- Website - [Outstandinggirl13](https://github.com/Outstandinggirl13)
+- Frontend Mentor - [@Outstandinggirl13e](https://www.frontendmentor.io/profile/Outstandinggirl13)
