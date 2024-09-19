@@ -1,92 +1,160 @@
-# Frontend Mentor - Product preview card component
+# Frontend Mentor - Product preview card component solution
 
-![Design preview for the Product preview card component coding challenge](./design/desktop-preview.jpg)
+This is a solution to the [Product preview card component challenge on Frontend Mentor](https://www.frontendmentor.io/challenges/product-preview-card-component-GO7UmttRfa). Frontend Mentor challenges help you improve your coding skills by building realistic projects. 
 
-## Welcome! 👋
+## Table of contents
 
-Thanks for checking out this front-end coding challenge.
+- [Overview](#overview)
+  - [The challenge](#the-challenge)
+  - [Screenshot](#screenshot)
+  - [Links](#links)
+- [My process](#my-process)
+  - [Built with](#built-with)
+  - [What I learned](#what-i-learned)
+  - [Useful resources](#useful-resources)
+- [Author](#author)
 
-[Frontend Mentor](https://www.frontendmentor.io) challenges help you improve your coding skills by building realistic projects.
 
-**To do this challenge, you need a basic understanding of HTML and CSS.**
+## Overview
 
-## The challenge
+### The challenge
 
-Your challenge is to build out this product preview card component and get it looking as close to the design as possible.
-
-You can use any tools you like to help you complete the challenge. So if you've got something you'd like to practice, feel free to give it a go.
-
-Your users should be able to:
+Users should be able to:
 
 - View the optimal layout depending on their device's screen size
 - See hover and focus states for interactive elements
 
-Want some support on the challenge? [Join our community](https://www.frontendmentor.io/community) and ask questions in the **#help** channel.
+### Screenshot
 
-## Where to find everything
+![](./screenshots/webpage-screenshot.png)
 
-Your task is to build out the project to the designs inside the `/design` folder. You will find both a mobile and a desktop version of the design. 
+### Links
 
-The designs are in JPG static format. Using JPGs will mean that you'll need to use your best judgment for styles such as `font-size`, `padding` and `margin`. 
+- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Live Site URL: [GitHub Pages](https://outstandinggirl13.github.io/product-preview-card-component-main/)
 
-If you would like the design files (we provide Sketch & Figma versions) to inspect the design in more detail, you can [subscribe as a PRO member](https://www.frontendmentor.io/pro).
+## My process
 
-You will find all the required assets in the `/images` folder. The assets are already optimized.
+### Built with
 
-There is also a `style-guide.md` file containing the information you'll need, such as color palette and fonts.
+- Semantic HTML5 markup
+- CSS custom properties
+- Flexbox
 
-## Building your project
+### What I learned
 
-Feel free to use any workflow that you feel comfortable with. Below is a suggested process, but do not feel like you need to follow these steps:
+Here’s a list of challenges I’ve come across so far while working on this project, along with how I tackled them:
 
-1. Initialize your project as a public repository on [GitHub](https://github.com/). Creating a repo will make it easier to share your code with the community if you need help. If you're not sure how to do this, [have a read-through of this Try Git resource](https://try.github.io/).
-2. Configure your repository to publish your code to a web address. This will also be useful if you need some help during a challenge as you can share the URL for your project with your repo URL. There are a number of ways to do this, and we provide some recommendations below.
-3. Look through the designs to start planning out how you'll tackle the project. This step is crucial to help you think ahead for CSS classes to create reusable styles.
-4. Before adding any styles, structure your content with HTML. Writing your HTML first can help focus your attention on creating well-structured content.
-5. Write out the base styles for your project, including general content styles, such as `font-family` and `font-size`.
-6. Start adding styles to the top of the page and work down. Only move on to the next section once you're happy you've completed the area you're working on.
+1. **Dealing with how to position section element**
 
-## Deploying your project
+I used a pretty straightforward way to position the section in the middle of the screen:
+```css
+section {
+    margin: calc((100vh - 28.125rem) * 0.5) auto;
+}
+```
+What keeps the element centered along the y-axis are equal top and bottom margins that are calculated as ```(100vh - 28.125rem) * 0.5```, where ```28.125rem``` is the height of the section element. Also, in order to keep the element centered horizontally I used a well-known and popular value ```auto``` with ```margin``` property. As a result, the margins adjust based on the browser window size, ensuring the section element remains centered regardless of the window's dimensions. I believe this makes the webpage more responsive on larger screens, but at the same time, it causes some issues on mobile devices (see paragraph 5.2).
 
-As mentioned above, there are many ways to host your project for free. Our recommended hosts are:
+2. **Looking for a way to make a div element with the class .attribution, which plays the role of a footer, stick to the bottom of the page and remain visible**
 
-- [GitHub Pages](https://pages.github.com/)
-- [Vercel](https://vercel.com/)
-- [Netlify](https://www.netlify.com/)
+Since the ```<section>``` element, including its margins, takes up all the available vertical space in the viewport, I needed to find a way to display the footer on top of the section. If the footer remains part of the document flow, you'll need to scroll down to see it. Because this page is rather minimalistic, I would like it to be equal to the screen size, without any scrolling needed.
+To deal with the issue, the following approach was taken:
+```css
+.attribution { 
+    position: fixed;
+    bottom: 0;
+}
+```
+```position: fixed;``` takes the element out of document flow and ```bottom: 0;``` ensures that it will stick to the bottom. 
 
-You can host your site using one of these solutions or any of our other trusted providers. [Read more about our recommended and trusted hosts](https://medium.com/frontend-mentor/frontend-mentor-trusted-hosting-providers-bf000dfebe).
+3. **Splitting the section into two rows that contain the product image and product description**
 
-## Create a custom `README.md`
+For that, I used the Flexbox, although, I am still learning about the technology and I don't know all the nuances, this approach seems reasonable to me and the most convenient in this case.
+```css
+section {
+    display: flex;
+    flex-direction: row;
+}
+```
+And then I set
+```css
+.product-description {
+    width: 50%;
+}
+```
+to make the div element with ```.product-description``` class precisely equal to half of the section element.
 
-We strongly recommend overwriting this `README.md` with a custom one. We've provided a template inside the [`README-template.md`](./README-template.md) file in this starter code.
+4. **Switching to more responsive units**
 
-The template provides a guide for what to add. A custom `README` will help you explain your project and reflect on your learnings. Please feel free to edit our template as much as you like.
+I've learned that one of the ways to be confident that the page looks like it is supposed to in all browsers with different user settings and sizes of screens is to use more responsive units like rem or % instead of px. Therefore, where appropriate, I replaced units with ```rem``` (mainly for font sizes, margins, and paddings) and ```%``` (for width and height).
 
-Once you've added your information to the template, delete this file and rename the `README-template.md` file to `README.md`. That will make it show up as your repository's README file.
+5. **Fixing a messed up footer on mobile devices.**
 
-## Submitting your solution
+5.1 To ensure that a div element with class ```.attribution``` won't have a width smaller than the section element in mobile design, I assigned the following property to it: 
+```css
+.attribution { 
+    min-width: 21.5rem;
+}
+```
+This helped prevent any unexpected behavior on smaller devices.
 
-Submit your solution on the platform for the rest of the community to see. Follow our ["Complete guide to submitting solutions"](https://medium.com/frontend-mentor/a-complete-guide-to-submitting-solutions-on-frontend-mentor-ac6384162248) for tips on how to do this.
+5.2 My solution for centering the ```<section>``` element was designed with large screens in mind. However, when the screen height is too small, the webpage looks awkward, and the calculated margin becomes negative. For example, on the iPhone SE, the footer overlaps the ```<section>``` element.
 
-Remember, if you're looking for feedback on your solution, be sure to ask questions when submitting it. The more specific and detailed you are with your questions, the higher the chance you'll get valuable feedback from the community.
+<img src="./screenshots/initial-iPhone-SE.png" alt="Initial screen on the iPhone SE with the footer issue" width="375">
 
-## Sharing your solution
+In this case, two media queries are applied. The first targets screens with a width of less than 648px and contains CSS code for mobile devices. The second applies to screens with a height of less than 720px and a width under 648px. This second media query addresses the footer issue by setting fixed top and bottom margin values and changing the footer's position to static:
+```css
+    section {
+        margin: 2rem auto;
+    }
 
-There are multiple places you can share your solution:
+    .attribution { 
+        position: static;
+    }
+```
+This prevents the footer from overlapping the ```<section>``` element and ensures it remains part of the document flow. With these adjustments, the webpage on the iPhone SE looks much better, although now you need to scroll down to see the attribution.
 
-1. Share your solution page in the **#finished-projects** channel of the [community](https://www.frontendmentor.io/community). 
-2. Tweet [@frontendmentor](https://twitter.com/frontendmentor) and mention **@frontendmentor**, including the repo and live URLs in the tweet. We'd love to take a look at what you've built and help share it around.
-3. Share your solution on other social channels like LinkedIn.
-4. Blog about your experience building your project. Writing about your workflow, technical choices, and talking through your code is a brilliant way to reinforce what you've learned. Great platforms to write on are [dev.to](https://dev.to/), [Hashnode](https://hashnode.com/), and [CodeNewbie](https://community.codenewbie.org/).
+Initial screen displayed when the user enters the webpage on the iPhone SE:
 
-We provide templates to help you share your solution once you've submitted it on the platform. Please do edit them and include specific questions when you're looking for feedback. 
+<img src="./screenshots/fixed-iPhone-SE-cropped.png" alt="Initial screen on the iPhone SE without the footer issue" width="375">
 
-The more specific you are with your questions the more likely it is that another member of the community will give you feedback.
+Full-size screenshot on the iPhone SE:
 
-## Got feedback for us?
+<img src="./screenshots/fixed-iPhone-SE-fullSize.png" alt="Full-size screenshot on the iPhone SE without the footer issue" width="375">
 
-We love receiving feedback! We're always looking to improve our challenges and our platform. So if you have anything you'd like to mention, please email hi[at]frontendmentor[dot]io.
+5.3 The same issue occurs on screens with smaller heights. For example, on the Samsung Galaxy A51/71 in landscape mode, the CSS rule margin: calc((100vh - 28.125rem) * 0.5) auto; produces the following result:
 
-This challenge is completely free. Please share it with anyone who will find it useful for practice.
+<img src="./screenshots/initial-Samsung-Galaxy-A51_71.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
 
-**Have fun building!** 🚀
+To resolve the issue, I added an additional media query:
+```css
+@media (max-height: 34rem) {
+
+    section {
+        margin: 2rem auto;
+    }
+
+    .attribution { 
+        position: static;
+    }
+}
+```
+Initial screen displayed when the user enters the webpage on the Samsung Galaxy A51/71:
+
+<img src="./screenshots/fixed-Samsung-Galaxy-A51_71-cropped.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
+
+Full-size screenshot on the Samsung Galaxy A51/71:
+
+<img src="./screenshots/fixed-Samsung-Galaxy-A51_71-fullSize.png" alt="Initial screen on the Samsung Galaxy A51/71 with the footer issue" width="914">
+
+### Useful resources
+
+- [Positioning - MDN](https://developer.mozilla.org/en-US/docs/Learn/CSS/CSS_layout/Positioning) - This helped me to understand ```position:fixed```.
+- [Font-size - MDN](https://developer.mozilla.org/en-US/docs/Web/CSS/font-size) - Thanks to this article, I gained a clearer understanding of the differences between units.
+- [CSS media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries) and [Using media queries](https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_media_queries/Using_media_queries) - For a better understanding of how to use media queries in responsive design.
+
+
+## Author
+
+- Website - [Outstandinggirl13](https://github.com/Outstandinggirl13)
+- Frontend Mentor - [@Outstandinggirl13e](https://www.frontendmentor.io/profile/Outstandinggirl13)
