@@ -30,7 +30,7 @@ Users should be able to:
 
 ### Links
 
-- Solution URL: [Add solution URL here](https://your-solution-url.com)
+- Solution URL: [HTML & CSS: Creating a Responsive Card Component](https://www.frontendmentor.io/solutions/html-and-css-creating-a-responsive-card-component-bjEaCk0Tgx)
 - Live Site URL: [GitHub Pages](https://outstandinggirl13.github.io/product-preview-card-component-main/)
 
 ## My process
