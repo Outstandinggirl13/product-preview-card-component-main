@@ -157,4 +157,4 @@ Full-size screenshot on the Samsung Galaxy A51/71:
 ## Author
 
 - Website - [Outstandinggirl13](https://github.com/Outstandinggirl13)
-- Frontend Mentor - [@Outstandinggirl13e](https://www.frontendmentor.io/profile/Outstandinggirl13)
+- Frontend Mentor - [@Outstandinggirl13](https://www.frontendmentor.io/profile/Outstandinggirl13)
